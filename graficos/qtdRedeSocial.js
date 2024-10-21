@@ -1,4 +1,5 @@
-const url = "https://raw.githubusercontent.com/guilhermeonrails/api/main/dados-globais.json"
+const url = "https://raw.githubusercontent.com/guilhermeonrails/api/main/numero-usuarios.json"
+
 
 
 async function vizualizarInformacaoGlobais(){
@@ -7,8 +8,12 @@ const res = await fetch(url)
 const dados = await res.json()
 console.log(dados);
 
-const pessoasConectadas = (dados.total_pessoas_conectadas / 1e9);
-const pessoasMundo = (dados.total_pessoas_mundo / 1e9);
+const facebook = (dados.Facebook / 1000);
+const intagram = (dados.Instagram / 1000);
+const youtube = (dados.Youtube / 1000);
+const tiktok = (dados.Tiktok / 1000);
+const whatsapp = (dados.WhatsApp / 1000);
+const wechat = (dados.WeChat / 1000);
 
 const horas = parseInt(dados.tempo_medio);
 const minutos = Math.round((dados.tempo_medio - horas) * 100).toFixed(2);
@@ -16,10 +21,13 @@ const minutos = Math.round((dados.tempo_medio - horas) * 100).toFixed(2);
 const paragrafo = document.createElement('p')
 paragrafo.classList.add('graficos-container__texto')
 
-paragrafo.innerHTML = `Você sabia que o mundo tem 
-<span>${pessoasMundo}</span> bilhões de pessoas e aproximadamente
-<span>${pessoasConectadas}</span> bilhões estão conectadas em alguma rede social e passam em média
-<span>${horas}</span>:<span>${minutos}</span> horas por dia`
+paragrafo.innerHTML = `Aproximadamente 
+<span>${facebook}</span> bilhões de pessoas usam Facebook, 
+<span>${intagram}</span> bilhões usam o instagram, 
+<span>${youtube}</span> bilhões usam o Youtube, 
+<span>${tiktok}</span> bilhões usam o Tiktok, 
+<span>${whatsapp}</span> bilhões usam Whatsapp e  
+<span>${wechat}</span> bilhões usam o Wechat`
 
 console.log(paragrafo)
 
